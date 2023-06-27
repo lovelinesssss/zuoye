@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5动画拖放</title>
+    <style>
+        #result,
+        #two {
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+            float: left;
+        }
+    </style>
+</head>
+ 
+<body>
+    <p>请拖动图片</p>
+    <div id="result" ondragover="allowDrap(event)" ondrop="drop(event)"></div>
+    <div id="two" ondragover="allowDrap(event)" ondrop="drop(event)"></div>
+    <img id="dragl" src="./res/main1/1.jpg" alt="" draggable="true" ondragstart="drag(event)" width="300" height="300">
+</body>
+<script>
+    // 拖动开始
+    function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+    //拖动过程
+    function drop(ev) {
+        ev.preventDefault();
+        var id = ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(id));
+    }
+ 
+ 
+    //拖动结束
+    function allowDrap(ev) {
+        ev.preventDefault();
+    }
+</script>
+ 
+</html>
